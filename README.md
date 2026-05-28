@@ -71,12 +71,6 @@ python originpro_mcp_server.py
 | `run_labtalk` | Execute arbitrary LabTalk script |
 | `cleanup` | Kill lingering Origin processes |
 
-## Example Usage
-
-Ask Claude to create a graph:
-
-> "Use Origin to create a line+symbol plot comparing three methods' monthly power generation data. Use black circles for the long-term average, blue squares for the new method, and red inverted triangles for the Sandia method. Label the X axis '月份' and Y axis '月发电量/kWh'."
-
 ## How It Works
 
 The MCP server uses the `originpro` Python package, which communicates with OriginPro via COM automation (Windows only). The server exposes OriginPro's functionality through the Model Context Protocol, allowing AI assistants to control OriginPro programmatically.

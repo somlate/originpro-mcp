@@ -7,14 +7,35 @@ Requires Origin 2021+ and the `originpro` Python package (COM-based, Windows onl
 Install:  pip install -r requirements.txt
 Run:      python originpro_mcp_server.py
 
-Color Index Reference:
-  1=Black, 2=Red, 3=Green, 4=Blue, 5=Cyan, 6=Magenta, 7=Yellow, 8=Dark Red
+Color Index Reference (set via -c flag):
+  0=None, 1=Black, 2=Red, 3=Green, 4=Blue, 5=Cyan, 6=Magenta,
+  7=Yellow, 8=Dark Red, 9=Dark Green, 10=Dark Blue, 11=Dark Cyan,
+  12=Dark Magenta, 13=Olive, 14=Navy, 15=Purple, 16=Wine,
+  17=Forest Green, 18=Acid Green, 19=Indigo, 20=Orange, 21=Pink,
+  22=Salmon, 23=Coral, 24=Ruby, 25=Sapphire, 26=Amber, 27=Lime,
+  28=Teal, 29=Violet, 30=Rose, 31=Maroon, 32-63=Custom palette
 
-Symbol Type Reference (set via -k flag in set_cmd):
-  1=Square, 2=Circle, 3=Up Triangle, 4=Down Triangle, 5=Diamond,
-  6=Cross, 7=Star, 8=Bar, 9=Up Triangle (open), 10=Down Triangle (open)
+Symbol Type Reference (set via -k flag):
+  0=None, 1=Square, 2=Circle, 3=Up Triangle, 4=Down Triangle,
+  5=Diamond, 6=Cross (+), 7=Star, 8=H-Bar, 9=Up Triangle (open),
+  10=Down Triangle (open), 11=Square (open), 12=Circle (open),
+  13=Diamond (open), 14=Cross (open), 15=Star (open), 16=H-Bar (open),
+  17=Sphere, 18=Cube, 19=Up Triangle (3D), 20=Down Triangle (3D),
+  21=Diamond (3D), 22=Cross (3D), 23=Star (3D), 24=Bar (3D),
+  25=Circle (Sphere), 26=Square (Cube), 27=Up Tetrahedron,
+  28=Down Tetrahedron, 29=Diamond (Octahedron), 30=Plus, 31=X,
+  32=Up Triangle (filled), 33=Down Triangle (filled), 34=Dot
 
-Plot Type for add_plot: 'l'=Line, 's'=Scatter, 'y'=Line+Symbol, 'c'=Column
+Line Style Reference (set via -d flag):
+  0=None, 1=Solid, 2=Short Dash, 3=Dot, 4=Dash-Dot,
+  5=Dash-Dot-Dot, 6=Long Dash, 7=Long Dash-Dot, 8=Long Dash-Dot-Dot,
+  9=Sparse Dot
+
+Line Width (set via -w flag, unit = 1/100 pt):
+  50=0.5pt, 100=1pt, 150=1.5pt, 200=2pt, 250=2.5pt, 300=3pt, 500=5pt
+
+Plot Type for add_plot (set via type parameter):
+  'l'=Line, 's'=Scatter, 'y'=Line+Symbol, 'c'=Column, '?'=Auto(Template)
 """
 
 from __future__ import annotations
@@ -420,10 +441,11 @@ def customize_plot(
     Args:
         graph_name:  Short name of the graph page.
         plot_index:  Zero-based index of the data plot to customize.
-        color:       Color index (1=Black, 2=Red, 3=Green, 4=Blue, 5=Cyan, 6=Magenta).
-        symbol_type: Symbol type (1=Square, 2=Circle, 3=Up Triangle, 4=Down Triangle,
-                     5=Diamond, 10=Inv Triangle). Only works when plot was created with
-                     plot_type='line+symbol' or 'scatter'.
+        color:       Color index. Common: 1=Black, 2=Red, 3=Green, 4=Blue,
+                     5=Cyan, 6=Magenta, 7=Yellow. Full list in module docstring.
+        symbol_type: Symbol type. Common: 1=Square, 2=Circle, 3=Up Triangle,
+                     4=Down Triangle, 5=Diamond, 7=Star. Full list in module docstring.
+                     Only works when plot was created with plot_type='line+symbol' or 'scatter'.
         symbol_size: Symbol size in points.
         symbol_fill: Whether symbols are filled (True) or open (False).
         line_width:  Line width in 1/100 pt (e.g. 250 = 2.5 pt).

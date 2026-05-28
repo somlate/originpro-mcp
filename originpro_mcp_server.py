@@ -9,22 +9,18 @@ Run:      python originpro_mcp_server.py
 
 Color Index Reference (set via -c flag):
   0=None, 1=Black, 2=Red, 3=Green, 4=Blue, 5=Cyan, 6=Magenta,
-  7=Yellow, 8=Dark Red, 9=Dark Green, 10=Dark Blue, 11=Dark Cyan,
-  12=Dark Magenta, 13=Olive, 14=Navy, 15=Purple, 16=Wine,
-  17=Forest Green, 18=Acid Green, 19=Indigo, 20=Orange, 21=Pink,
-  22=Salmon, 23=Coral, 24=Ruby, 25=Sapphire, 26=Amber, 27=Lime,
-  28=Teal, 29=Violet, 30=Rose, 31=Maroon, 32-63=Custom palette
+  7=Yellow, 8=Olive, 9=Dark Cyan, 10=Navy, 11=Purple,
+  12=Dark Magenta, 13=Dark Red, 14=Dark Green, 15=Orange,
+  16=Violet, 17=Pink, 18=Lime, 19=Light Gray, 20=Gray,
+  21=Light Yellow, 22=Light Cyan, 23=Light Magenta,
+  24=Dark Gray, 25-31=Darker shades, 32-63=Custom palette
 
 Symbol Type Reference (set via -k flag):
   0=None, 1=Square, 2=Circle, 3=Up Triangle, 4=Down Triangle,
-  5=Diamond, 6=Cross (+), 7=Star, 8=H-Bar, 9=Up Triangle (open),
-  10=Down Triangle (open), 11=Square (open), 12=Circle (open),
-  13=Diamond (open), 14=Cross (open), 15=Star (open), 16=H-Bar (open),
-  17=Sphere, 18=Cube, 19=Up Triangle (3D), 20=Down Triangle (3D),
-  21=Diamond (3D), 22=Cross (3D), 23=Star (3D), 24=Bar (3D),
-  25=Circle (Sphere), 26=Square (Cube), 27=Up Tetrahedron,
-  28=Down Tetrahedron, 29=Diamond (Octahedron), 30=Plus, 31=X,
-  32=Up Triangle (filled), 33=Down Triangle (filled), 34=Dot
+  5=Diamond, 6=Plus (+), 7=X, 8=Asterisk (*), 9=H-Line,
+  10=V-Bar, 11=Small Square, 14=Right Arrow,
+  15=Left Triangle (filled), 16=Right Triangle (filled),
+  17=Hexagon, 18=Star (5-pt), 19=Pentagon, 20=Circle with Dot
 
 Line Style Reference (set via -d flag):
   0=None, 1=Solid, 2=Short Dash, 3=Dot, 4=Dash-Dot,

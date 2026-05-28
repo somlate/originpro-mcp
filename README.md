@@ -14,25 +14,6 @@ A Model Context Protocol (MCP) server for controlling [OriginLab OriginPro](http
 - **Graph export** — PNG, JPG, TIFF, BMP, SVG, PDF, EPS
 - **LabTalk scripting** — execute arbitrary Origin LabTalk scripts for advanced operations
 
-## Color Index Reference
-
-| Index | Color | Index | Color |
-|-------|-------|-------|-------|
-| 1 | Black | 5 | Cyan |
-| 2 | Red | 6 | Magenta |
-| 3 | Green | 7 | Yellow |
-| 4 | Blue | 8 | Dark Red |
-
-## Symbol Type Reference
-
-| Index | Shape | Index | Shape |
-|-------|-------|-------|-------|
-| 1 | Square | 6 | Cross |
-| 2 | Circle | 7 | Star |
-| 3 | Up Triangle | 8 | Bar |
-| 4 | Down Triangle | 9 | Up Triangle (open) |
-| 5 | Diamond | 10 | Down Triangle (open) |
-
 ## Prerequisites
 
 1. **OriginPro 2021+** installed on Windows

@@ -62,8 +62,17 @@ mcp = FastMCP(
 _initialized = False
 
 
+def _origin_running() -> bool:
+    """Check if an Origin process is already running."""
+    result = subprocess.run(
+        ["tasklist", "/fi", "IMAGENAME eq Origin64.exe"],
+        capture_output=True, text=True,
+    )
+    return "Origin64.exe" in result.stdout
+
+
 def _kill_origin() -> None:
-    """Force-kill any lingering Origin background processes."""
+    """Force-kill only if Origin is truly stuck (not on every startup)."""
     for proc in ["Origin.exe", "Origin64.exe"]:
         subprocess.run(
             ["taskkill", "/f", "/im", proc],
@@ -74,12 +83,30 @@ def _kill_origin() -> None:
 
 
 def _ensure_origin() -> None:
-    """Ensure Origin is running and ready, cleaning up stale processes first."""
+    """Ensure Origin is running and ready.
+
+    Strategy:
+    - If Origin is already running, just connect (no kill, no relaunch).
+    - If not running, launch it.
+    - Only kill if connection fails (stale/broken process).
+    """
     global _initialized
-    if not _initialized:
-        _kill_origin()
-        op.set_show(True)
-        _initialized = True
+    if _initialized:
+        return
+
+    if _origin_running():
+        # Origin already running — just connect
+        try:
+            op.set_show(True)
+            _initialized = True
+            return
+        except Exception:
+            # Connection to existing Origin failed — kill and relaunch
+            _kill_origin()
+
+    # Origin not running or was killed — launch fresh
+    op.set_show(True)
+    _initialized = True
 
 
 def _page_lookup(name: str | None, page_type: str | None = None) -> Any:
@@ -97,13 +124,17 @@ def _page_lookup(name: str | None, page_type: str | None = None) -> Any:
 
 
 def _origin_cleanup() -> None:
-    """Gracefully exit Origin then kill lingering processes."""
+    """Gracefully exit Origin. Only force-kill if it refuses to close."""
+    global _initialized
     try:
         op.exit()
+        time.sleep(1)
     except Exception:
         pass
-    time.sleep(1)
-    _kill_origin()
+    # Only force-kill if Origin is still running after graceful exit
+    if _origin_running():
+        _kill_origin()
+    _initialized = False
 
 
 # ---------------------------------------------------------------------------
@@ -597,8 +628,22 @@ def run_labtalk(script: str) -> str:
 @mcp.tool()
 def cleanup() -> str:
     """Force-kill all Origin background processes. Call this if Origin fails to start."""
+    global _initialized
     _kill_origin()
+    _initialized = False
     return "Origin processes cleaned up."
+
+
+@mcp.tool()
+def origin_status() -> str:
+    """Show how many Origin processes are running and whether MCP is connected."""
+    result = subprocess.run(
+        ["tasklist", "/fi", "IMAGENAME eq Origin64.exe"],
+        capture_output=True, text=True,
+    )
+    count = result.stdout.count("Origin64.exe")
+    status = "connected" if _initialized else "not connected"
+    return f"Origin processes: {count}\nMCP connection: {status}"
 
 
 # ---------------------------------------------------------------------------

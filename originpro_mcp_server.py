@@ -7,13 +7,13 @@ Requires Origin 2021+ and the `originpro` Python package (COM-based, Windows onl
 Install:  pip install -r requirements.txt
 Run:      python originpro_mcp_server.py
 
-Color Index Reference (set via -c flag):
-  0=None, 1=Black, 2=Red, 3=Green, 4=Blue, 5=Cyan, 6=Magenta,
-  7=Yellow, 8=Olive, 9=Dark Cyan, 10=Navy, 11=Purple,
-  12=Dark Magenta, 13=Dark Red, 14=Dark Green, 15=Orange,
-  16=Violet, 17=Pink, 18=Lime, 19=Light Gray, 20=Gray,
-  21=Light Yellow, 22=Light Cyan, 23=Light Magenta,
-  24=Dark Gray, 25-31=Darker shades, 32-63=Custom palette
+Color Index Reference (set via -c or -pfb flag):
+  0=Black, 1=Black, 2=Red, 3=Green, 4=Blue, 5=Cyan, 6=Magenta,
+  7=Yellow, 8=Olive, 9=Navy, 10=Purple, 11=Maroon,
+  12=Dark Green, 13=Teal, 14=Dark Blue, 15=Orange,
+  16=Violet, 17=Rose, 18=White, 19=Light Gray, 20=Gray,
+  21=Light Yellow, 22=Light Cyan, 23=Light Pink,
+  24=Dark Gray, 25-63=Black (unused)
 
 Symbol Type Reference (set via -k flag):
   0=None, 1=Square, 2=Circle, 3=Up Triangle, 4=Down Triangle,
@@ -437,8 +437,9 @@ def customize_plot(
     Args:
         graph_name:  Short name of the graph page.
         plot_index:  Zero-based index of the data plot to customize.
-        color:       Color index. Common: 1=Black, 2=Red, 3=Green, 4=Blue,
-                     5=Cyan, 6=Magenta, 7=Yellow. Full list in module docstring.
+        color:       Color index. Common: 2=Red, 3=Green, 4=Blue, 5=Cyan,
+                     6=Magenta, 7=Yellow, 15=Orange, 18=White, 19=Light Gray,
+                     20=Gray, 24=Dark Gray. Full list in module docstring.
         symbol_type: Symbol type. Common: 1=Square, 2=Circle, 3=Up Triangle,
                      4=Down Triangle, 5=Diamond, 7=Star. Full list in module docstring.
                      Only works when plot was created with plot_type='line+symbol' or 'scatter'.

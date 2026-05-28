@@ -81,6 +81,11 @@ Ask Claude to create a graph:
 
 The MCP server uses the `originpro` Python package, which communicates with OriginPro via COM automation (Windows only). The server exposes OriginPro's functionality through the Model Context Protocol, allowing AI assistants to control OriginPro programmatically.
 
+## Contributors
+
+- [somlate](https://github.com/somlate) — Project creator
+- [Claude](https://github.com/anthropics/claude) — Code generation & optimization
+
 ## License
 
 MIT
